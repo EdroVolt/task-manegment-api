@@ -1,11 +1,9 @@
-/**
- * qa branch for testing ...
- *  */
 import { CustomServer } from "./Core/CustomeServer";
 import { BodyParserMiddleware } from "./Middlewares/BodyParserMiddleware";
 import { HomeRouter } from "./Routes/HomeRouter";
 import { TaskRouter } from "./Routes/TaskRouter";
 import { MorganMiddleware } from "./Middlewares/MorganMiddleware";
+import { CorsMiddleware } from "./Middlewares/CorsMiddleware";
 
 /**
  * init server
@@ -16,6 +14,7 @@ const app = new CustomServer();
  */
 app.middleware(new BodyParserMiddleware());
 app.middleware(new MorganMiddleware());
+app.middleware(new CorsMiddleware());
 /**
  * init routes
  */

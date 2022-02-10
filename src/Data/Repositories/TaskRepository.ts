@@ -10,6 +10,22 @@ export class TaskRepo {
     }
   }
 
+  search(title: string | undefined, description: string | undefined) {
+    const task = tasks.find((task) => {
+      if (title && !description) {
+        return task.title === title;
+      } else if (!title && description) {
+        return task.description === description;
+      }
+
+      return task.title === title && task.description === description;
+    });
+
+    if (!task) return [];
+
+    return [task];
+  }
+
   insert(item: Task): string {
     try {
       tasks.push(item);

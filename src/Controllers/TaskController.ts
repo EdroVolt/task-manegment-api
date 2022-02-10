@@ -4,6 +4,13 @@ import { TaskService } from "../Services/TaskService";
 const taskService = new TaskService();
 
 export function AllTasks(req: Request, res: Response) {
+  let title = req.query.title?.toString();
+  let description = req.query.description?.toString();
+
+  if (title || description) {
+    res.json({ tasks: taskService.filter({ title, description }) });
+  }
+
   res.json({ tasks: taskService.readAll() });
 }
 

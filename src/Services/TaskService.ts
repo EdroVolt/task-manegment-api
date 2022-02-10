@@ -13,6 +13,10 @@ export class TaskService {
     return taskRepo.findAll();
   }
 
+  filter(data: { title: string | undefined; description: string | undefined }) {
+    return taskRepo.search(data.title, data.description);
+  }
+
   update(data: {
     id: string | number;
     task: { title: string; description: string };
